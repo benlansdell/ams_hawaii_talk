@@ -56,6 +56,50 @@
 <!-- ----------------------------------------------------------------------- -->
 <!-- ----------------------------------------------------------------------- -->
 
+
+<!--
+
+Key points:
+
+P1
+_________________________
+
+* I'm going to talk about two related problems that involve these considerations.
+The problems are related in that they both use thresholds to measure causal effects, and that allows use to optimize.
+
+* Just some notes on the nature of the approach before we go into the details. 
+-- There really are no accepted, overarching theories of how the brain works. The idea is that to understand how it solves some task, we first characterize the behavior of interest, we then propose algorithms that it could be using to solve the problem, and then look for evidence in neural circuits if this is actually how it does it. This is a bit different to how other parts of theoretical biology may operate, where less emphasis is given to the notion of a system as processing information and as implementing some algorithm. Nonetheless, that's what occurs here. 
+
+
+P2
+________________________
+
+* Transition to next project: So we've seen how thresholds in neuroscience can let use infer causal effects, which lets us optimize a cost function. Next we change gear a bit and analyze the idea of optimizing a threshold policy much more generally. 
+
+* The motivation is as follows. Many policies in medicine are determined by thresholding on some linear combination of factors. The implicit assumption of such policies is first that those above the threshold benefit and those below do not. There is also the assumption that the goal is greedy, in the sense that the goal is to benefit as many people as possible. That is, under assumption 1 when someone comes in with really high blood pressure, then they get the medication, the doctor doesn't think 'hmm do they really benefit from this medication?'. That question is generally relegated to a randomize control trial.
+
+* The idea is that, even under this greedy policy case that doesn't contain any explicit exploration, we've seen that with policies we can estimate causal effects. And this tells us what will happen if we change the policy -- we can optimize the threshold to benefit more people while maintaining these greedy aims to benefit as many people as possible given our current knowledge.
+
+A number of authors have been arguing that RDD should be used more in medicine. RDD can have benefits to RCTs in the following ways: [go through]
+
+Thus there is the possibility of, with a threshold policy, both learning if the treatment is effective and benefiting more people than would benefit from a classical RCT.
+
+* We can think of adjusting the threshold to benefit as many people as possible, given our current knowledge. This is a type of adpative trial design. 
+
+** Skip definition of MAB, go straight to contextual MAB
+
+* "Threshold policies"
+
+So, how can we analyze the regret behavior of threshold policies?
+And how to design threshold algorithms that balance the considerations we outlined...
+
+P3
+________________________
+* Summary of the whole thing:
+
+Thus returning to our original problem of how we measure the effect of our actions, and how to use that knowledge to learn to act optimally, we've seen two problems in which thresholds can be used to measure causal effects and thus to optimize. I think this regression discontinuity idea has many applications that have yet to be explored in both neuroscience and medicine...
+
+-->
 	
 
 	<section data-background="assets/brainbow2.jpg">
@@ -653,7 +697,7 @@ Overall summary
 			<li> Originally developed as a model for adaptive clinical trials
 			<li> Also used for:
 				<ul>
-					<li> Targeted advertizing
+					<li> Personalized medicine
 					<li> Website A/B testing
 					<li> Routing problems, portfolio construction
 				</ul>
@@ -662,30 +706,6 @@ Overall summary
 		<aside class="notes">
 	    <span style="color: red"></span> •
 	    The field that deals with balancing these sort of considerations is the multi-armed bandit setting. 
-	    • <span style="color: green"></span>
-	  </aside>
-	</section>
-
-	<section data-background-color='#ffffff'>
-		<h2>Multi-armed bandits</h2>
-		<ul>
-			<li> $T$ rounds in a trial
-			<li> For each $t\in[1,T]$:
-			<ol><li> Choose action $a_t \in \mathcal{A}, |\mathcal{A}| = k$
-			<li> Observe reward $y_t$</ol>
-			<li> Aim to maximze reward:
-				$$
-				\mathcal{Y}_T = \sum^T_{t=1}\mathbb{E}(y_t)
-				$$
-			<li> Same as minimizing regret:
-				$$
-				R_T = \mu^{*}T - \sum^T_{t=1}\mu^{a_t}
-				$$
-			<li> Basic question: asymptotic behavior of regret with $T$. <br>Want sub-linear regret
-		</ul>
-		<aside class="notes">
-	    <span style="color: red"></span> •
-	    This is formalized as follows: [explain points]
 	    • <span style="color: green"></span>
 	  </aside>
 	</section>
