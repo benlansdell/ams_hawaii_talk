@@ -3,4 +3,4 @@
 	url = https://github.com/hakimel/reveal.js.git
 [submodule "mathjax"]
 	path = mathjax
-	url = https://github.com/mathjax/mathjax.git
+	url = https://github.com/mathjax/MathJax.git
